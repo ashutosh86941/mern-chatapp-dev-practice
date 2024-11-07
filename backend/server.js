@@ -6,12 +6,12 @@ import cookieParser from "cookie-parser";
 import messageRoutes from "./routes/message.routes.js";
 import connectDB from "./db/connectToMongodb.js";  
 import userRoutes from "./routes/user.routes.js";
+import {app,server} from './socket/socket.js';
 
 connectDB();
 
 
 dotenv.config();
-const app = express();
 
 app.use(cookieParser());
 const port = Process.env.PORT;
@@ -21,4 +21,4 @@ app.use("/api/messages", messageRoutes);
 app.use("/api/users" , userRoutes);
 
 
-app.listen(port, () => {});
+server.listen(port, () => {});
